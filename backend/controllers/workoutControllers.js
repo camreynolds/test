@@ -2,6 +2,7 @@ const Workout = require("../model/workoutModel")
 const mongoose = require("mongoose")
 
 const getAllWorkouts = async (req,res) =>{
+  
   try {
     const workouts = await Workout.find({}).sort({createdAt: -1})
     res.status(200).json(workouts)
@@ -11,13 +12,13 @@ const getAllWorkouts = async (req,res) =>{
 }
 
 const getSingleWorkout = async(req,res)=>{
-  const {id} = req.params
+  const {_id} = req.params
   
-  if(!mongoose.Types.ObjectId.isValid(id)){
+  if(!mongoose.Types.ObjectId.isValid(_id)){
     return res.status(400).json({error: "This is not a valid id."})
   }
 
-  const workout = await Workout.findById(id)
+  const workout = await Workout.findById(_id)
 
   if(!workout){
     return res.status(400).json({error: "Not such workout."})
@@ -55,13 +56,13 @@ const createSingleWorkout = async(req,res)=>{
 }
 
 const updateWorkout = async(req,res)=>{
-  const {id} = req.params
+  const {_id} = req.params
 
-  if(!mongoose.Types.ObjectId.isValid(id)){
+  if(!mongoose.Types.ObjectId.isValid(_id)){
     return res.status(400).json({error:"This is not a valid id."})
   }
 
-  const workout = await Workout.findByIdAndUpdate(id,{
+  const workout = await Workout.findByIdAndUpdate(_id,{
     ...req.body
   })
 
@@ -73,13 +74,13 @@ const updateWorkout = async(req,res)=>{
 }
 
 const deleteWorkout = async(req,res)=>{
-  const {id} = req.params
+  const {_id} = req.params
 
-  if(!mongoose.Types.ObjectId.isValid(id)){
+  if(!mongoose.Types.ObjectId.isValid(_id)){
     return res.status(400).json({error: "This is not a valid id."})
   }
 
-  const workout = await Workout.findByIdAndDelete(id)
+  const workout = await Workout.findByIdAndDelete(_id)
 
   if(!workout){
     return res.status(400).json({error: "Not such workout."})
