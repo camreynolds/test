@@ -3,6 +3,7 @@ const mongoose = require("mongoose")
 const express = require("express")
 const app = express()
 const workoutsRoutes = require("./routes/workoutsRoutes")
+const userRoutes = require("./routes/userRoutes")
 
 // middleware
 app.use(express.json())
@@ -13,6 +14,7 @@ app.use((req,res,next)=>{
 
 // app routes
 app.use("/api/workouts",workoutsRoutes)
+app.use("/api/user", userRoutes)
 
 // server conecction
 mongoose.connect(process.env.MONGOOSE_URI)
