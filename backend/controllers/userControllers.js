@@ -2,7 +2,7 @@ const jwt = require("jsonwebtoken")
 const User = require("../model/userSchema")
 
 const createToken = (_id)=>{
-  return jwt.sign({_id},process.env.SECRET)
+  return jwt.sign({_id},process.env.SECRET,{expiresIn:"1 h"})
 }
 
 const userSignup = async (req,res)=>{
