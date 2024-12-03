@@ -30,6 +30,9 @@ export const WorkoutsContextProvider = ({children})=>{
     workouts: null
   })
 
+  console.log("Workouts context:",state)
+  
+
   return(
     <WorkoutsContext.Provider value={{...state,dispatch}}>
       {children}

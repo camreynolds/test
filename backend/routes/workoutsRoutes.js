@@ -1,5 +1,4 @@
 const express = require("express")
-const workoutsRoutes = express.Router()
 const {
   getAllWorkouts,
   getSingleWorkout,
@@ -7,6 +6,10 @@ const {
   updateSingleWorkout,
   deleteSingleWorkout
 } = require("../controllers/workoutsControllers")
+const workoutsRoutes = express.Router()
+const requireAuth = require("../middleware/requireAuth")
+
+workoutsRoutes.use(requireAuth)
 
 // get all the workouts
 workoutsRoutes.get("/", getAllWorkouts)
