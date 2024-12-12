@@ -5,10 +5,13 @@ import App from './App';
 
 // Context
 import { WorkoutsContextProvider } from './context/WorkoutsContext';
+import { AuthContextProvider } from './context/AuthContext';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <WorkoutsContextProvider>
-    <App />
-  </WorkoutsContextProvider>
+  <AuthContextProvider>
+    <WorkoutsContextProvider>
+      <App />
+    </WorkoutsContextProvider>
+  </AuthContextProvider>
 )
